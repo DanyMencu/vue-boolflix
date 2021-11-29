@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Header />
+    <Header @searchClick='filmChosen' />
 
     <main>
       <!-- Film section -->
-      <FilmSection />
+      <FilmSection :Films="filmsFind"/>
     </main>
   </div>
 </template>
 
 <script>
-/* import axios from 'axios'; */
+import axios from 'axios';
 import Header from './components/Header.vue';
 import FilmSection from './components/FilmSection.vue';
 
@@ -19,6 +19,37 @@ export default {
   components: {
     Header,
     FilmSection,
+  },
+  created() {
+  },
+  data() {
+      return {
+        filmsFind: null,
+        filmSelected: '',
+      };
+  },
+  methods: {
+    SearchFilms() {
+      /* Call API for data */
+      axios.get('https://api.themoviedb.org/3/search/movie', {
+        params: {
+          api_key: 'ea406b3b6df3538757d7eb19761ffa58',
+          query: this.filmSelected ,
+          language: 'it-IT',
+        }
+      })
+      .then(result => {
+        console.log(result.data.results);
+        this.filmsFind = result.data.results;
+
+      })
+      .catch(error => console.log(error));
+    },
+    filmChosen(text) {
+        this.filmSelected = text;
+
+        this.SearchFilms()
+    },
   }
 }
 </script>

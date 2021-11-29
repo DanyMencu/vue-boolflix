@@ -1,8 +1,8 @@
 <template>
-  <header>
+  <header class="p-3">
       <input type="text" placeholder="Quale film cerchi?"
-        v-model="SearchBar">
-      <button>Cerca</button>
+        v-model="SearchBarText">
+      <button @click="$emit('searchClick', SearchBarText)">Cerca</button>
   </header>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     name: 'Header',
     data() {
         return {
-            SearchBar: '',
+            SearchBarText: '',
 
         }
     }
@@ -20,5 +20,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+header {
+    background-color: #dedede;
+}
 
 </style>
