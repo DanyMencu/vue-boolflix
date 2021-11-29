@@ -8,7 +8,9 @@
               <h4>Titolo originale: {{ element.original_title }} </h4>
           </li>
           <li>
-              <p>Lingua: {{ element.original_language }} </p>
+              <img v-if="element.original_language === 'it'" src="../assets/it.png" :alt="element.original_language">
+              <img v-else-if="element.original_language === 'en'" src="../assets/en.png" :alt="element.original_language">
+              <p v-else>Lingua: {{ element.original_language }} </p>
           </li>
           <li>
               <p>Voto: {{ element.vote_average }} </p>
@@ -25,7 +27,6 @@ export default {
     },
     data() {
         return {
-            
         }
     }
 }
@@ -35,5 +36,8 @@ export default {
 
 ul:nth-child(odd) {
     background-color: #cdcdcd;
+}
+img {
+    width: 40px;
 }
 </style>
