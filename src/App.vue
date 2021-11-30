@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <Header @searchClick='filmChosen' />
+    <Header @searchClick='getResult' />
 
     <main>
       <!-- Film section -->
-      <FilmSection :Films="filmsFind"/>
+      <FilmSection 
+      :Films="filmsFind"
+      :Series="seriesFind"
+      />
     </main>
   </div>
 </template>
@@ -25,11 +28,12 @@ export default {
   data() {
       return {
         filmsFind: [],
+        seriesFind: [],
       };
   },
   methods: {
-    SearchFilms(text) {
-      /* Call API for data */
+    getResult(text) {
+      /* Call API for FILM data */
       axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
           api_key: 'ea406b3b6df3538757d7eb19761ffa58',
@@ -43,11 +47,21 @@ export default {
 
       })
       .catch(error => console.log(error));
-    },
-    filmChosen(text) {
-        this.filmSelected = text;
 
-        this.SearchFilms()
+      /* Call API for SERIES data */
+      axios.get('https://api.themoviedb.org/3/search/tv', {
+        params: {
+          api_key: 'ea406b3b6df3538757d7eb19761ffa58',
+          query: text,
+          language: 'it-IT',
+        }
+      })
+      .then(result => {
+        console.log(result.data.results);
+        this.seriesFind = result.data.results;
+
+      })
+      .catch(error => console.log(error));
     },
   }
 }

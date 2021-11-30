@@ -1,10 +1,22 @@
 <template>
   <main>
-      <div class="col" v-for="element in Films" :key="element.id">
+      <!-- V-FOR per i FILM -->
+      <div class="col px-1 py-2" v-for="element in Films" :key="`Film ID-${element.id}`">
         <Card 
+            :poster="element.poster_path"
             :title="element.title"
             :originalTitle="element.original_title"
-            :lenguage="element.original_lenguage"
+            :language="element.original_language"
+            :vote="element.vote_average"
+        />
+      </div>
+            <!-- V-FOR per le SERIE -->
+      <div class="col px-1 py-2" v-for="element in Series" :key="`Serie ID-${element.id}`">
+        <Card 
+            :poster="element.poster_path"
+            :title="element.name"
+            :originalTitle="element.original_name"
+            :language="element.original_language"
             :vote="element.vote_average"
         />
       </div>
@@ -21,6 +33,7 @@ export default {
     },
     props: {
         Films: Array,
+        Series: Array,
     },
     data() {
         return {

@@ -1,17 +1,20 @@
 <template>
-  <div class="card">
-      <ul class="py-2">
-          <li>Titolo: {{ title }}</li>
-          <li>Titolo Originale: {{ originalTitle }}</li>
-          <li class="lenguage">
-              Lingua:
-                <img 
-                v-if="isAvailable"
-                :src="require(`../assets/${lenguage}.png`)" :alt="lenguage"
-                />
-                <span v-else> {{lenguage}}</span>
+  <div class="card py-2">
+      <ul>
+          <li>
+              <img :src="`https://image.tmdb.org/t/p/w92/${poster}`" :alt="originalTitle"></li>
+          <li> <strong>Titolo:</strong> {{ title }}
           </li>
-          <li>Voto: {{ vote }} </li>
+          <li> <strong>Titolo Originale: </strong> {{ originalTitle }}</li>
+          <li class="language">
+              <strong>Lingua: </strong>
+                <img 
+                v-if="languageAvailable.includes(language)"
+                :src="require(`../assets/${language}.png`)" :alt="language"
+                />
+                <span v-else> {{ language }}</span>
+          </li>
+          <li><strong>Voto: </strong>{{ vote }} </li>
       </ul>
   </div>
 </template>
@@ -22,17 +25,18 @@ export default {
     props: {
         title: String,
         originalTitle: String,
-        lenguage: String,
+        language: String,
         vote: Number,
+        poster: String,
     },
     data() {
         return {
-            lenguageAvailable: ['it', 'en',],
+            languageAvailable: ['it', 'en','es','fr','de','ja',],
         }
     },
     computed: {
         isAvailable() {
-            return this.lenguageAvailable.includes(this.lenguage);
+            return this.languageAvailable.includes(this.language);
         }
     },
 }
@@ -41,10 +45,10 @@ export default {
 <style scoped lang="scss">
 
 ul {
-    &:nth-child(odd) {
-    background-color: #cdcdcd;
-    }
-    .lenguage {
+    list-style: none;
+    padding-left: 1rem;
+
+    .language {
         img {
             width: 30px;
         }
