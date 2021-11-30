@@ -23,8 +23,6 @@ export default {
     Header,
     FilmSection,
   },
-  created() {
-  },
   data() {
       return {
         filmsFind: [],
@@ -42,7 +40,6 @@ export default {
         }
       })
       .then(result => {
-        console.log(result.data.results);
         this.filmsFind = result.data.results;
 
       })
@@ -57,7 +54,6 @@ export default {
         }
       })
       .then(result => {
-        console.log(result.data.results);
         this.seriesFind = result.data.results;
 
       })

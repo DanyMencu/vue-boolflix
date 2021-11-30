@@ -1,5 +1,6 @@
 <template>
   <main>
+      <div v-if="Films.length != 0">
       <!-- V-FOR per i FILM -->
       <div class="col px-1 py-2" v-for="element in Films" :key="`Film ID-${element.id}`">
         <Card 
@@ -20,6 +21,12 @@
             :vote="element.vote_average"
         />
       </div>
+
+      </div>
+
+      <div v-else class="empty">
+        <h2>Cerca un film/serie TV che ti interessa...</h2>
+      </div>
   </main>
 </template>
 
@@ -35,15 +42,18 @@ export default {
         Films: Array,
         Series: Array,
     },
-    data() {
-        return {
-        
-        }
-    },
-
 }
 </script>
 
 <style scoped lang="scss">
 
+main {
+    background-color: #555;
+}
+
+.empty {
+    padding: 4rem 0;
+    text-align: center;
+    color: #dedede;
+}
 </style>
