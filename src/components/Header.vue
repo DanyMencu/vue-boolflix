@@ -1,7 +1,7 @@
 <template>
   <header class="p-3">
       <input type="text" placeholder="Quale film cerchi?"
-        v-model="SearchBarText" @keyup.enter="$emit('searchClick', SearchBarText)">
+        v-model.trim="SearchBarText" @keyup.enter="$emit('searchClick', SearchBarText)">
       <button @click="$emit('searchClick', SearchBarText)">Cerca</button>
   </header>
 </template>
@@ -12,7 +12,6 @@ export default {
     data() {
         return {
             SearchBarText: '',
-
         }
     }
 

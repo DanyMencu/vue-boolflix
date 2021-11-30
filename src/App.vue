@@ -24,17 +24,16 @@ export default {
   },
   data() {
       return {
-        filmsFind: null,
-        filmSelected: '',
+        filmsFind: [],
       };
   },
   methods: {
-    SearchFilms() {
+    SearchFilms(text) {
       /* Call API for data */
       axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
           api_key: 'ea406b3b6df3538757d7eb19761ffa58',
-          query: this.filmSelected ,
+          query: text,
           language: 'it-IT',
         }
       })
