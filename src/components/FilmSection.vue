@@ -1,27 +1,16 @@
 <template>
-  <main>
-      <div v-if="Films.length != 0">
-      <!-- V-FOR per i FILM -->
-      <div class="col px-1 py-2" v-for="element in Films" :key="`Film ID-${element.id}`">
-        <Card 
-            :poster="element.poster_path"
-            :title="element.title"
-            :originalTitle="element.original_title"
-            :language="element.original_language"
-            :vote="element.vote_average"
-        />
-      </div>
-            <!-- V-FOR per le SERIE -->
-      <div class="col px-1 py-2" v-for="element in Series" :key="`Serie ID-${element.id}`">
-        <Card 
-            :poster="element.poster_path"
-            :title="element.name"
-            :originalTitle="element.original_name"
-            :language="element.original_language"
-            :vote="element.vote_average"
-        />
-      </div>
-
+  <main class="container">
+      <div class="row" v-if="Result.length != 0">
+        <!-- V-FOR per il contenuto dell'array RESULT -->
+        <div class="col-2 p-1" v-for="element in Result" :key="`Film ID-${element.id}`">
+          <Card 
+              :poster="element.poster_path"
+              :title="element.title ? element.title : element.name"
+              :originalTitle="element.original_title ? element.original_title : element.original_name"
+              :language="element.original_language"
+              :vote="element.vote_average"
+          />
+        </div>
       </div>
 
       <div v-else class="empty">
@@ -39,21 +28,10 @@ export default {
         Card,
     },
     props: {
-        Films: Array,
-        Series: Array,
+        Result: Array,
     },
 }
 </script>
 
 <style scoped lang="scss">
-
-main {
-    background-color: #555;
-}
-
-.empty {
-    padding: 4rem 0;
-    text-align: center;
-    color: #dedede;
-}
 </style>
