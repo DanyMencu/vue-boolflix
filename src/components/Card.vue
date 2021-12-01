@@ -5,7 +5,7 @@
         <img v-else class="error-img" src="../assets/404.png" alt="404 Error not found">
     </div>
     <div class="descritpion">
-        <ul class="d-flex flex-column">
+        <ul class="d-flex flex-column justify-content-center">
             <li> <strong>Titolo:</strong> {{ title }}
             </li>
             <li> <strong>Titolo Originale: </strong> {{ originalTitle }}</li>
