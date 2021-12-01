@@ -2,7 +2,7 @@
   <div id="app">
     <Header @searchClick='getResult' />
 
-    <main>
+    <main class="py-3">
       <div v-if="filmsFind.length != 0 && seriesFind.length != 0">
         <!-- Film section -->
         <FilmSection 
@@ -74,12 +74,8 @@ export default {
 <style lang="scss">
 @import '@/styles/Global';
 
-main {
-  background-color: #555;
-}
-
 .empty {
-    height: 87vh;
+    height: 80.1vh;
     padding: 4rem 0;
     display: flex;
     justify-content: center;

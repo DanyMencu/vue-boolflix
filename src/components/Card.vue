@@ -5,11 +5,14 @@
         <img v-else class="error-img" src="../assets/404.png" alt="404 Error not found">
     </div>
     <div class="descritpion">
-        <ul>
+        <ul class="d-flex flex-column">
             <li> <strong>Titolo:</strong> {{ title }}
             </li>
             <li> <strong>Titolo Originale: </strong> {{ originalTitle }}</li>
-            <li class="language">
+            <li v-if="overview.length != 0" class="overview">
+                <strong>Descrizione: </strong> {{ overview }}
+            </li>
+            <li v-else class="language">
                 <strong>Lingua: </strong>
                     <img 
                     v-if="languageAvailable.includes(language)"
@@ -32,6 +35,7 @@ export default {
     props: {
         title: String,
         originalTitle: String,
+        overview: String,
         language: String,
         vote: Number,
         poster: String,
@@ -56,7 +60,7 @@ export default {
     margin: 0 auto;
     background-color: #fff;
     border: 0;
-    border-radius: 5px;
+    border-radius: 0;
     cursor: pointer;
     overflow: hidden;
 
@@ -71,7 +75,7 @@ export default {
         width: 100%;
         height: 100%;
         overflow: hidden;
-        border-radius: 4px;
+
 
         img {
             height: 100%;
@@ -92,21 +96,24 @@ export default {
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
     transition: opacity 0.4s;
-    border-radius: 4px;
+
+    .overview {
+        height: 50%;
+        overflow: hidden;
+    }
 }
 
 ul {
     width: 100%;
+    height: 100%;
     list-style: none;
     padding: 0 0 0 10px;
     margin: 0;
-    color: #fff;
+    color: #ededed;
 
-    li {
-        display: block;
+    strong {
+        color: #fff;
     }
-
-
 
     .language {
         img {

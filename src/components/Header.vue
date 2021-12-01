@@ -7,7 +7,7 @@
                     <img src="../assets/LogoBig.png" alt="Logo Pezzotto">
                   </div>
               </div>
-              <div class="col-3">
+              <div class="col-3 d-flex justify-content-between align-items-center">
                     <input type="text" placeholder="Quale film cerchi?"
                         v-model.trim="SearchBarText" @keyup.enter="$emit('searchClick', SearchBarText)">
                     <button class="search_btn"
@@ -35,13 +35,12 @@ export default {
 
 <style scoped lang="scss">
 header {
-    background-color: #000;
-    height: 13vh;
+    background: linear-gradient(#000, 70%, rgba(0, 0, 0, 0));
 
     .logo {
         overflow: hidden;
         width: 6%;
-        transition: width linear 2s;
+        transition: width 1.5s;
         position: relative;
         cursor: pointer;
 
@@ -50,10 +49,34 @@ header {
         }
     }
 
-    .search_btn {
-        background-color: #ededed;border: 1px solid #fff;
+    input {
+        background-color: transparent;
+        border: 0px;
+        border-bottom: 1px solid transparent;
+        color: #444;
+
+        &:hover {
+            border-bottom:1px solid #333;
+        }
+
+        &:focus {
+            outline: none;
+            border-bottom:1px solid #333;
+            color: #fff;
+        }
     }
 
+    .search_btn {
+        background-color: #333;
+        border: 1px solid #333;
+        padding: 3px 15px;
+        border-radius: 7px;
+        color: #dedede;
+
+        &:hover {
+            background-color: #555;
+        }
+    }
 }
 
 
