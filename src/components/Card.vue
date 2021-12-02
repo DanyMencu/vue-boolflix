@@ -18,7 +18,7 @@
                 <span v-else> {{ language }}</span>
             </li>
             <li v-else>
-                <span v-if="overview.length > 100"><strong>Descrizione: </strong> {{ overview.slice(0, 100) }}...</span>
+                <span v-if="overview.length > 70"><strong>Descrizione: </strong> {{ overview.slice(0, 70) }}...</span>
                 <span v-else><strong>Descrizione: </strong> {{ overview }}</span>
             </li>
             <li><strong>Voto: </strong>
