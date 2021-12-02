@@ -9,16 +9,17 @@
             <li> <strong>Titolo:</strong> {{ title }}
             </li>
             <li> <strong>Titolo Originale: </strong> {{ originalTitle }}</li>
-            <li v-if="overview.length != 0" class="overview">
-                <strong>Descrizione: </strong> {{ overview }}
-            </li>
-            <li v-else class="language">
+            <li v-if="overview.length === 0" class="language">
                 <strong>Lingua: </strong>
                     <img 
                     v-if="languageAvailable.includes(language)"
                     :src="require(`../assets/${language}.png`)" :alt="language"
                     />
                 <span v-else> {{ language }}</span>
+            </li>
+            <li v-else>
+                <span v-if="overview.length > 100"><strong>Descrizione: </strong> {{ overview.slice(0, 100) }}...</span>
+                <span v-else><strong>Descrizione: </strong> {{ overview }}</span>
             </li>
             <li><strong>Voto: </strong>
                 <i class="fas fa-star yellow" v-for="(n, i) in Math.ceil(vote / 2)" :key="i" ></i>
@@ -96,11 +97,6 @@ export default {
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
     transition: opacity 0.4s;
-
-    .overview {
-        height: 50%;
-        overflow: hidden;
-    }
 }
 
 ul {

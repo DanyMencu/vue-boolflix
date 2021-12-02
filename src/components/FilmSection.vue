@@ -1,6 +1,7 @@
 <template>
   <div class="container">
       <div class="row">
+        <h3 class="section-title">Risultati trovati: {{Result.length}}</h3>
         <!-- V-FOR per il contenuto dell'array RESULT -->
         <div class="col-2 px-1 py-4" v-for="element in Result" :key="`Film ID-${element.id}`">
           <Card 

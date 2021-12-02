@@ -3,12 +3,12 @@
     <Header @searchClick='getResult' />
 
     <main class="py-3">
-      <div v-if="filmsFind.length != 0 && seriesFind.length != 0">
+      <div v-if="filmsFind.length != 0 || seriesFind.length != 0">
         <!-- Film section -->
         <FilmSection 
         :Result="filmsFind"
         />
-
+        <!-- TV Series section -->
         <FilmSection 
         :Result="seriesFind"
         />
@@ -43,7 +43,6 @@ export default {
         const apiParams = {
             api_key: 'ea406b3b6df3538757d7eb19761ffa58',
             query: text,
-            language: 'it-IT',
         }
 
         /* Call API for FILM data */
@@ -73,6 +72,11 @@ export default {
 
 <style lang="scss">
 @import '@/styles/Global';
+
+.section-title {
+  color: #666;
+  padding-left: 20px;
+}
 
 .empty {
     height: 80.1vh;
